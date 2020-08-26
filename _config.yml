@@ -29,10 +29,18 @@ url: "https://znss1989.github.io" # the base hostname & protocol for your site, 
 twitter_username: jekyllrb
 github_username:  jekyll
 
+# the two below are required parameters by jekyll-theme-hamilton
+disqus: ""
+google_analytics: ""
+
 # Build settings
-theme: minima
+theme: jekyll-theme-hamilton
 plugins:
   - jekyll-feed
+  - jekyll-remote-theme
+  - jekyll-theme-hamilton
+
+remote_theme: ngzhio/jekyll-theme-hamilton
 
 # Exclude from processing.
 # The following items will not be processed, by default.
