@@ -33,8 +33,8 @@ twitter_username: jekyllrb
 github_username:  jekyll
 
 # the two below are required parameters by jekyll-theme-hamilton
-disqus: ""
-google_analytics: ""
+disqus: "disqus_3hEm4VLUzX"
+google_analytics: "UA-78243724-3"
 
 # Build settings
 theme: jekyll-theme-hamilton
