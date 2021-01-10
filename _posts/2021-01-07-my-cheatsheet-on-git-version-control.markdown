@@ -31,11 +31,81 @@ Once tracked by Git, there are three possible states for files in a Git reposito
 
 ### Set up
 
-Configuration and new project
+To begin using Git, it would be convenient to configure it with proper credentials, e.g. username and email, so that source code changes and other kinds of contributions in a project can be identified easily. This can be done on the local level, global level and system level, with increasing scope.
+
+A sample configuration could be the following.
+
+```bash
+git config --global user.email "znss1989@gmail.com"
+git config --global user.name "Wu, Lei"
+```
+
+To check those values, the commands below can be used.
+
+```bash
+git config user.email
+git config user.name
+git config --list
+```
+
+With the credentials configured properly, now it is time to tell Git to start tracking in a working project.
+
+```bash
+mkdir demo && cd demo
+git init
+```
+
+The command `git init` simply creates an empty project, with a `.git` directory dealing with all the work for tracking. Do check its content if feel interested in how Git works. However, nothing will be tracked automatically at the moment, until explictly told such.
 
 ### Single chain
 
-Commits, logs and revert
+A series of changes in a project will be put by Git as one chain of snapshots, each of which as mentioned above is a complete record of the whole project at a particular point of time. The most recent one of the snapshot chain is called `HEAD`. The command `git add` will start the tracking of contents in a project. 
+
+```bash
+git add <file>
+```
+
+To track all the contents, wild cards `.` or `*` can be used.
+
+```bash
+git add .
+```
+
+To verify that whether Git is indeed working as expected, `git status` can be used to check which files are modified, staged and so on.
+
+```bash
+$ git status
+On branch master
+
+Initial commit
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+
+        new file:   foo
+```
+
+As can be seen above, file `foo` is now staged by Git, which can be commited later into a snapshot. And command `git rm --cached <file>` can be used unstage files into untracked state. A commit (snapshot) can be made by the `git commit` command, as below.
+
+```bash
+git commit -m '<description_of_commit>'
+```
+
+With changes made and tracked in a project, it is possible to use `git log` command to view the commit history for your project, sorted reversely by the creation time.
+
+```bash
+git log --oneline
+```
+
+Option flag such as `--oneline` helps format the information in an easier-to-read format.
+
+Most likely, one would make mistakes during the process of making these commits of changes. Command `git reset` is helpful fixing such errors.
+
+```bash
+git reset --soft HEAD~1
+```
+
+Here the `--soft` option turns the committed contents into staged area. Note that the number following `HEAD~` denotes the number of commits to revert. If the contents are not needed at all, `--hard` flag can be used instead.
 
 ### Branches
 
