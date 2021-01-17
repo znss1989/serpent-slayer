@@ -109,13 +109,23 @@ Here the `--soft` option turns the committed contents into staged area. Note tha
 
 ### Branches
 
-Create, switch, delete a branch
+Git based version control allows parallel works going simultaneously, like development on different features while fixing bugs or polishing documentation of existing version at the same time. This is achieved by branches in Git, which avoids the confusion caused by mixing changes of multiple works together. 
 
-Git stash
+By default, there is a primary branch called `master`. When creating another branch `git branch <new_branch>`, Git actually creates a new pointer to the current snapshot. 
 
-Merge and resolve conflicts
+The command `git branch` will list out all the branches in a repository, and indicating the current branch with the asterisk `*`. Making commits will only update the current branch that is worked on. And `git checkout <branch_name>` allows to switch into another branch that is present. A shortcut to create a new branch and switch to it at the same time is the command `git checkout -b <new_branch>`.
 
-Rebase and resolve conflicts
+To rename an existing branch, `git branch -m <new_branch_name>` or `git branch -m <old_branch_name> <new_branch_name>` can be used. In similar manner, `git branch -d <branch_name>` will delete an existing branch.
+
+When working across different branches, sometimes there is need to keep some active work temporarily, which is not completed and ready to be committed, before switching to another branch. `git stash` will come to the rescue for such cases, by storing the staged and modified contents in cache, all the while making the working branch directory clean.. After switch back to the branch that is stashed, `git stash apply` will get the temporary work back. This is useful especially when the modified content has conflicts with other branches.
+
+<!-- Create, switch, delete a branch -->
+
+<!-- Git stash -->
+
+<!-- Merge and resolve conflicts -->
+
+<!-- Rebase and resolve conflicts -->
 
 ## GitHub and remotes
 
