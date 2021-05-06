@@ -7,6 +7,8 @@ categories: [computer science, data structure]
 tags: [linked lists, python]
 ---
 
+Linked list is one of the most fundamental data structures in the world of computer science. This article discusses the concepts related to linked lists, how to implement and manipulate them in Python and demostrates how it can be applied to build more complex data structures and solve problems.
+
 ## What are linked lists?
 
 Linked list is a sequence of nodes that are linked one by one in order by reference of neighboring node(s). Specifically, the more accurate definitions of various linked lists are given as the following.
@@ -26,7 +28,7 @@ Linked list is a sequence of nodes that are linked one by one in order by refere
 
     Comparing with singly linked lists, tail of a circularly linked list uses its next reference to point back to the head of the list.
 
-Attributes
+The **key attribute** of a linked list is that inserting and deleting elements in a list has time complexity *O(1)*. On the other hand, searching to obtain the *k*-th element in a list is expensive, having *O(n)* time complexity.
 
 ## How it works?
 
