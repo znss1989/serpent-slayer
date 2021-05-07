@@ -34,6 +34,15 @@ The **key attribute** of a linked list is that inserting and deleting elements i
 
 ### Implementation
 
+Here below is probably the simplest prototype implementation of a singly linked list in Python, where an instance of the `ListNode` type can be used to represent the starting node, thus the whole linked list. For each of the list node, the `next` field contains the reference to the next node.
+
+```python
+class ListNode:
+  def __init__(self , data=0, next_node=None)
+    self.data = data
+    self.next = next_node
+```
+
 ### Basic operations
 
 ## Manipulating linked lists
