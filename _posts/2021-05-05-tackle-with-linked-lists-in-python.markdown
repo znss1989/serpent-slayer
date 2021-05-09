@@ -43,9 +43,32 @@ class ListNode:
     self.next = next_node
 ```
 
+Of course, here the `data` field can be customized at will for different applications.
+
 ### Basic operations
 
+The most common and basic operations related to linked lists include search for a key in the list, insert and delete a node after a specific node. Examples of those are given below.
+
+```python
+# search for a key
+def search(L: ListNode, key: int):
+    while L and L.data != key:
+        L = L.next
+    return L
+
+# insert after a node
+def insert_after(node: ListNode, inserted: ListNode):
+    inserted.next = node.next
+    node.next = inserted
+
+# delete after a node
+def delete_after(node: ListNode):
+    if node.next:
+        node.next = node.next.next
+```
+
 ## Manipulating linked lists
+
 
 ### Sentinel
 
