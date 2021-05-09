@@ -69,8 +69,56 @@ def delete_after(node: ListNode):
 
 ## Manipulating linked lists
 
+Conceptually, linked lists are simple and straightforward, whereas some common techniques can be handy manipulating with the data structure to solve problems efficiently.
 
 ### Sentinel
+
+Keeping a reference to a linked lists can become difficult when it is dynamically updated. Sentinel or **dummy head** (tail) comes to the resuce in such situations, so that after updating operations are done, a program can easily return a reference to the complete list.
+
+In the code snippet below, `head` keeps a reference to the resulting linked list, from merging two original sorted one.
+
+```python
+def merge_two_sorted_lists(L1: Optional[ListNode],
+                           L2: Optional[ListNode]) -> Optional[ListNode]:
+    curr = head = ListNode()
+    while L1 and L2:
+        if L1.data <= L2.data:
+            curr.next = L1
+            L1 = L1.next
+        else:
+            curr.next = L2
+            L2 = L2.next
+        curr = curr.next
+    curr.next = L1 or L2
+    return head.next
+```
+
+As kind of a reverse direction, the following program splits one linked lists into two, according to even and odd position of its elements and concatenates together, where `dummy_even` and `dummy_odd` keeps the references to the two sub-lists, before merging back.
+
+```python
+def even_odd_merge(L: ListNode) -> Optional[ListNode]:
+    is_even = True
+    dummy_even, dummy_odd = ListNode(), ListNode()
+    even, odd = dummy_even, dummy_odd
+
+    while L:
+        curr = L
+        L, curr.next = L.next, None
+
+        if is_even:
+            even.next = curr
+            even = even.next
+        else:
+            odd.next = curr
+            odd = odd.next
+            
+        is_even = not is_even
+
+    even.next = dummy_odd.next  
+    return dummy_even.next
+```
+
+### Reverse
 
 ### Two iteratrors
 
