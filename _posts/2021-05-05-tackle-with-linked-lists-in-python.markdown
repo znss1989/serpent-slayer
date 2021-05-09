@@ -258,6 +258,8 @@ The above code tries to find the starting node of the overlapping, otherwise ret
 
 ### Sorting
 
+Sorting of a linked list might be implemented via various algorithms, which will be covered andn discussed in later articles specifically for sorting.
+
 ## Applications of linked lists
 
 ### Stacks & queues
