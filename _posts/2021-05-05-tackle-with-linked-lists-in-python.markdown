@@ -120,7 +120,103 @@ def even_odd_merge(L: ListNode) -> Optional[ListNode]:
 
 ### Reverse
 
+Reversing a linked list or a section of it is usually a middle step for a more complex algorithm. An example of reversing the nodes from index `start` to `finish` is given below.
+
+```python
+def reverse_sublist(L: ListNode, start: int,
+                    finish: int) -> Optional[ListNode]:
+    if not L or start <= 0 or finish <= start: 
+        return L
+    head = before = ListNode()
+    head.next = L
+    # find the start node
+    i = 1
+    while i < start:
+        before = before.next
+        i += 1
+    start_node = before.next
+    pre, curr = None, start_node
+    # reverse
+    while i <= finish:
+        nxt = curr.next
+        curr.next = pre
+        pre, curr = curr, nxt
+        i += 1
+    # connect
+    before.next, start_node.next = pre, curr
+    return head.next
+```
+
+If a complete linked list is to be reversed, the algorithm can be simplified as the following.
+
+```python
+def reverse_list(l: ListNode) -> ListNode:
+    pre, curr = None, l
+    while curr:
+        nxt = curr.next
+        curr.next = pre
+        pre, curr = curr, nxt
+    return pre
+```
+
+The reversing utility can facilitate solving more complicated problem, like in the example below to decide whether a linked lists is palindromic. The original is first divided into two halves, by using two iterators (which will also be covered a bit later). The second half is then reversed using the function we already have. This way, if the list is palindromic, when iterating elements of both halves of the list, the corresponding elements must match, except optionally one left.
+
+```python
+def is_linked_list_a_palindrome(L: ListNode) -> bool:
+    # find the middle at slow
+    slow, fast = L, L
+    while fast and fast.next:
+        slow, fast = slow.next, fast.next.next
+
+    first, second = L, reverse_list(slow)
+    while first and second:
+        if first.data != second.data:
+            return False
+        first, second = first.next, second.next
+    return True
+```
+
 ### Two iteratrors
+
+Sometimes, having two iterators on a linked list can save the step to traverse the list multiple times. Two iterators moving at the same speed forms a sliding window of fixed size, while on the other hand, a slow and a fast iterators guarentee the distances walked keeps a fixed ratio, e.g. *1: 2*.
+
+The following program deletes the k-th last node in `L`. Two iterators keeping a distance of `k` is used to locate the node to be removed.
+
+```python
+# Assumes L has at least k nodes.
+def remove_kth_last(L: ListNode, k: int) -> Optional[ListNode]:
+    # TODO - you fill in here.
+    slow = fast = L
+    dummy = pre = ListNode()
+    dummy.next = L
+    for _ in range(k):
+        fast = fast.next
+    while fast:
+        pre, slow, fast = pre.next, slow.next, fast.next # slow is the target node
+    nxt = slow.next
+    pre.next = nxt
+    return dummy.next
+```
+
+An iterator that runs twice the speed of another can be used to find cycle in linked list. First, the fast and slow iterators are doom to meet if there is a cycle, as illustrated in the figure below.
+
+![Cycle in a linked list](/serpent-slayer/assets/images/cycle-in-list.png)
+
+Here the trick is to find the starting point of the cycle if it exists. After arriving at the meeting point, it is observed that the distance between list head and the cycle start should be identical to the one between the meeting point to the cycle start, along the path of fast iterator. This way, the code to find a cycle start is given as below.
+
+```python
+def has_cycle(head: ListNode) -> Optional[ListNode]:
+    # fast and slow iterator
+    slow = fast = head
+    while fast and fast.next:
+        slow, fast = slow.next, fast.next.next
+        if slow is fast: # meet
+            slow = head
+            while slow is not fast:
+                slow, fast = slow.next, fast.next
+            return slow
+    return None
+```
 
 ### Cycles & overlappings
 
