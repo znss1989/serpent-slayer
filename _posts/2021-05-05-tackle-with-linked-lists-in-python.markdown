@@ -2,7 +2,7 @@
 layout: post
 title:  "Tackle with linked lists in Python"
 author: Wu, Lei
-date:   2020-05-05 08:00:00 +0300
+date:   2020-05-09 09:15:00 +0300
 categories: [computer science, data structure]
 tags: [linked lists, python]
 ---
@@ -18,7 +18,7 @@ Linked list is a sequence of nodes that are linked one by one in order by refere
     Singly linked list is a data structure that contains a sequence of nodes such that each node contains an object and a reference to the next node in the list.
     The first node is referred to as the **head** and the last node is referred to as the **tail**; the tail's next field is null. Sometimes, a sentinel node or a self-loop can be used instead of null to mark the end of the list.
 
-![Singly linked lists](/serpent-slayer/assets/images/singly-linked-list.png)
+![Singly linked lists](/serpent-slayer/assets/images/210509/singly-linked-list.png)
 
 - Doubly linked lists
 
@@ -198,9 +198,11 @@ def remove_kth_last(L: ListNode, k: int) -> Optional[ListNode]:
     return dummy.next
 ```
 
+### Cycles & overlappings
+
 An iterator that runs twice the speed of another can be used to find cycle in linked list. First, the fast and slow iterators are doom to meet if there is a cycle, as illustrated in the figure below.
 
-![Cycle in a linked list](/serpent-slayer/assets/images/cycle-in-list.png)
+![Cycle in a linked list](/serpent-slayer/assets/images/210509/cycle-in-list.png)
 
 Here the trick is to find the starting point of the cycle if it exists. After arriving at the meeting point, it is observed that the distance between list head and the cycle start should be identical to the one between the meeting point to the cycle start, along the path of fast iterator. This way, the code to find a cycle start is given as below.
 
@@ -218,7 +220,41 @@ def has_cycle(head: ListNode) -> Optional[ListNode]:
     return None
 ```
 
-### Cycles & overlappings
+When two linked lists are concatenated together, often it is safe to check whether there is a cycle formed, using the same technique above.
+
+Besides cycles, two different linked lists can overlap in later nodes, yet forming another topological structure. Here the key observation is that the tail of the two overlapping lists must be the same node.
+
+```python
+def overlapping_no_cycle_lists(l0: ListNode, l1: ListNode) -> ListNode:
+    if not l0 or not l1:
+        return None
+    def get_tail_with_length(l: ListNode):
+        if not l:
+            return None, 0
+        length = 1
+        while l.next:
+            l = l.next
+            length += 1
+        return l, length
+
+    t0, len0 = get_tail_with_length(l0)
+    t1, len1 = get_tail_with_length(l1)
+    if t0 is not t1:
+        return None
+    
+    if len0 > len1:
+        l0, l1 = l1, l0
+        len0, len1 = len1, len0
+    t0, t1 = l0, l1
+    for _ in range(len1 - len0):
+        t1 = t1.next
+    
+    while t0 is not t1:
+        t0, t1 = t0.next, t1.next
+    return t0
+```
+
+The above code tries to find the starting node of the overlapping, otherwise returns `None`. A utility for getting the tail and length of a linked list is utilized, to compute the difference of length, if overlapping is observed.
 
 ### Sorting
 
