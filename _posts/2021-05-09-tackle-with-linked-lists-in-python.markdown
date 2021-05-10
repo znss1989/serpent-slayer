@@ -262,7 +262,50 @@ Sorting of a linked list might be implemented via various algorithms, which will
 
 ## Applications of linked lists
 
+The property of fast insertion and deletion of an element in a sequence makes the linked lists good building blocks for more complicated structures.
+
 ### Stacks & queues
+
+As we all know, a **stack** is a data structure that supports Last-In-First-Out (LIFO) operations. Since a linked list always has a reference to its head, and manipulation at the list head is efficient *O(1)* time, it would be natural to orient the top of a stack at the list head. A concrete implementation of stack, utilizing a linked list is given below.
+
+```python
+class LinkedStack:
+    """LIFO Stack implementation using a singly linked list for storage."""
+
+    # Linked list node subclass
+    class ListNode:
+        def __init__(self , data=0, next_node=None)
+            self._data = data
+            self._next = next_node
+    
+    # Stack related methods
+    def __init__(self):
+        self._head = None
+        self._size = 0
+
+    def __len__(self):
+        return self._size
+
+    def is_empty(self):
+        return self._size == 0
+    
+    def push(self, data):
+        self._head = self.ListNode(data, self._head)
+        self._size += 1
+
+    def pop(self):
+        if self.is_empty():
+            raise ValueError("Stack empty")
+        res = self._head._data
+        self._head = self._head._next
+        self._size -= 1
+        return res
+        
+    def top(self):
+        if self.is_empty():
+            raise ValueError("Stack empty")
+        return self._head._data
+```
 
 ### Deque
 
