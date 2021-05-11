@@ -307,11 +307,62 @@ class LinkedStack:
         return self._head._data
 ```
 
+A queue being a counterpart of the stack, on the contrary, supports First-In-First-Out (FIFO) operations. A similar implementation utilizing linked lists is given as the following.
+
+```python
+class LinkedQueue:
+    """FIFO queue implementation using a singly linked list for storage."""
+
+    # Linked list node subclass
+    class ListNode:
+        def __init__(self , data=0, next_node=None)
+            self._data = data
+            self._next = next_node
+
+    # Queue related methods
+    def __init__(self):
+        self._head = None
+        self._tail = None
+        self._size = 0
+
+    def __len__(self):
+        return self._size
+
+    def is_empty(self):
+        return self._size == 0
+
+    def first(self):
+        if self.is_empty():
+            raise ValueError("Queue empty")
+        return self._head._data
+
+    def dequeue(self):
+        if self.is_empty():
+            raise ValueError("Queue empty")
+        res = self._head._data
+        self._head = self._head._next
+        self._size -= 1
+        if self.is_empty():
+            self._tail = None
+        return res
+
+    def enqueue(self, data):
+        latest = self.ListNode(data)
+        if self.is_empty():
+            self._head = latest
+        else:
+            self._tail.next = latest
+        self._tail = latest
+        self._size += 1
+```
+
 ### Deque
 
 ### ...
 
 ## Discuss
+
+## References
 
 
 
