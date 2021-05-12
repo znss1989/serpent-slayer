@@ -356,13 +356,14 @@ class LinkedQueue:
         self._size += 1
 ```
 
-### Deque
-
-### ...
+With similar styles, the linked lists can be put into use to form other more complicated data structures like deques and so on.
 
 ## Discuss
 
+If there are futher interesting topics I encounter related to linked lists, this article will be updated to reflect those.
+
 ## References
 
+[Data structures and algorithms in Python](https://www.amazon.com/Structures-Algorithms-Python-Michael-Goodrich/dp/1118290275)
 
 
