@@ -2,14 +2,18 @@
 layout: post
 title:  "Tackle with binary trees in Python"
 author: Wu, Lei
-date:   2020-05-16 09:25:00 +0300
+date:   2021-05-16 09:25:00 +0300
 categories: [computer science, data structure]
 tags: [binary trees, python]
 ---
 
-As the second article in the series, this one discusses the basic data structure binary trees, regarding its relevant concepts, properties, common implementation and manipulation techniques. Binary trees often serve as building block for more complex algorithms to solve various problems. Programming language is in Python context as before.
+As one of the series of articles about data structures and algorithms, this one discusses the basic data structure binary trees, regarding its relevant concepts, properties, common implementation and manipulation techniques. Binary trees often serve as building block for more complex algorithms to solve various problems. Programming language is in Python context as before.
 
 ## What is a binary tree?
+
+Formally, a binary has a recursive definition, namely, it is either empty or a root node together with a left binary tree and a right binary tree. As illustrated in the figure (from [Wikipedia - Binary trees](https://en.wikipedia.org/wiki/Binary_tree)) below, it naturally forms a sort of hierarchy.
+
+![A binary tree](/serpent-slayer/assets/images/210516/binary-tree.svg)
 
 - Search path
 - Leaf 9.13

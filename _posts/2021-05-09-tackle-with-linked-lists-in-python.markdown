@@ -2,7 +2,7 @@
 layout: post
 title:  "Tackle with linked lists in Python"
 author: Wu, Lei
-date:   2020-05-09 09:15:00 +0300
+date:   2021-05-09 09:15:00 +0300
 categories: [computer science, data structure]
 tags: [linked lists, python]
 ---
