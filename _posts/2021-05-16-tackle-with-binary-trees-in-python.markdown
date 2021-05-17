@@ -7,7 +7,7 @@ categories: [computer science, data structure]
 tags: [binary trees, python]
 ---
 
-Intro...
+As the second article in the series, this one discusses the basic data structure binary trees, regarding its relevant concepts, properties, common implementation and manipulation techniques. Binary trees often serve as building block for more complex algorithms to solve various problems. Programming language is in Python context as before.
 
 ## What is a binary tree?
 
