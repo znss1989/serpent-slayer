@@ -11,13 +11,24 @@ As one of the series of articles about data structures and algorithms, this one 
 
 ## What is a binary tree?
 
-Formally, a binary has a recursive definition, namely, it is either empty or a root node together with a left binary tree and a right binary tree. As illustrated in the figure (from [Wikipedia - Binary trees](https://en.wikipedia.org/wiki/Binary_tree)) below, it naturally forms a sort of hierarchy.
+Formally, a binary has a recursive definition, namely, it is either empty or a root node *r* together with a left binary tree and a right binary tree. As illustrated in the figure (from [Wikipedia - Binary trees](https://en.wikipedia.org/wiki/Binary_tree)) below, it naturally forms a sort of hierarchy.
 
 ![A binary tree](/serpent-slayer/assets/images/210516/binary-tree.svg)
 
-- Search path
-- Leaf 9.13
-- Depth & height
+Observe that for any node there exists a unique sequence of nodes from the root to that node with each node in the sequence being a child of the previous node. This sequence is sometimes referred to as the **search path** from the root of the tree to the node.
+
+The **depth** of a node *n* is the number of nodes on the search path from the root to n, not including *n* itself. The **height** of a binary tree can be defined as the maximum depth of any node in that tree, in some context, the definition varies with an offset of 1, including the root of the tree. A **level** at a tress is all nodes at the same depth.
+
+A node that has no descendants except for itself is called a **leaf**, like the node with value *11* in the figure. For example, to get all the leaf nodes out of a binary tree, in the order left-to-right, the following recursive code would nail that.
+
+```python
+def leaves(t: TreeNode) -> List[TreeNode]:
+  if not t:
+    return []
+  if not t.left and not t.right:
+    return [t]
+  return leaves(t.left) + leaves(t.right)
+```
 
 ### Types
 
