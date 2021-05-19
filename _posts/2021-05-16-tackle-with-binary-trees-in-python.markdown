@@ -22,12 +22,12 @@ The **depth** of a node *n* is the number of nodes on the search path from the r
 A node that has no descendants except for itself is called a **leaf**, like the node with value 11 in the figure above. For example, to get all the leaf nodes out of a binary tree, in the order left-to-right, the following recursive code would nail that.
 
 ```python
-def leaves(t: TreeNode) -> List[TreeNode]:
-  if not t:
-    return []
-  if not t.left and not t.right:
-    return [t]
-  return leaves(t.left) + leaves(t.right)
+def leaves(t: BinaryTreeNode) -> List[BinaryTreeNode]:
+    if not t:
+        return []
+    if not t.left and not t.right:
+        return [t]
+    return leaves(t.left) + leaves(t.right)
 ```
 
 ### Special binary trees
@@ -45,30 +45,50 @@ There are certain types of binary trees with special shapes, thus are of interes
 - Skewed tree
   A *left-skewed* tree is a tree in which no node has a right child; a *right-skewed* tree is a tree in which no node has a left child. In either case, we refer to the binary tree as being skewed.
 
-### Traverse
-
-- Inorder
-- Preorder, postorder
-
 ## How does it work
 
 ### Implementation
 
-#### Linked structure
+A prototype implemention using a linked structure is given as below.
 
-#### Array-based structure
+```python
+class BinaryTreeNode:
+    def __init__(self, data=None, left=None, right=None):
+        self.data= data
+        self.left, self.right = left, right
+```
 
-#### With parent field
+Sometimes the node object definition also includes a parent field (which is null for the root). If that is indeed the case, it can be used to find the lowest common ancestor of two nodes in a binary tree, which is given below.
 
-9.4
+```python
+def lca(node0: BinaryTreeNode,
+        node1: BinaryTreeNode) -> Optional[BinaryTreeNode]:
+    if not node0 or not node1:
+        return None
 
-### Recursion
+    def get_depth(node: BinaryTreeNode) -> int:
+        res = -1
+        while node:
+            res += 1
+            node = node.parent
+        return res
 
-9.1, 9.2
+    d0, d1 = get_depth(node0), get_depth(node1)
+    if d0 > d1:
+        node0, node1 = node1, node0
+        d0, d1 = d1, d0
 
-### Manipulation and common techniques
+    for _ in range(d1 - d0):
+        node1 = node1.parent
 
-#### Algorithms for balanced trees
+    while node0 is not node1:
+        node0, node1 = node0.parent, node1.parent
+    return node0
+```
+
+#### Array-based
+
+### Basic operations
 
 #### Traverse
 
@@ -78,6 +98,15 @@ There are certain types of binary trees with special shapes, thus are of interes
   9.10
 - BFS
 - Euler tour
+
+## Manipulation and common techniques
+
+### Recursion
+
+9.1, 9.2
+
+
+### Algorithms for balanced trees
 
 ## Applications of binary trees
 

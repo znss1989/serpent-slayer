@@ -38,9 +38,9 @@ Here below is probably the simplest prototype implementation of a singly linked 
 
 ```python
 class ListNode:
-  def __init__(self , data=0, next_node=None)
-    self.data = data
-    self.next = next_node
+    def __init__(self , data=0, next_node=None)
+        self.data = data
+        self.next = next_node
 ```
 
 Of course, here the `data` field can be customized at will for different applications.
