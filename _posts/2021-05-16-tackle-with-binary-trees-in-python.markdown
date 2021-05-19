@@ -58,7 +58,7 @@ class BinaryTreeNode:
         self.left, self.right = left, right
 ```
 
-Sometimes the node object definition also includes a parent field (which is null for the root). If that is indeed the case, it can be used to find the lowest common ancestor of two nodes in a binary tree, which is given below.
+Sometimes the node object definition also includes a parent field (which is null for the root). If that is indeed the case, it can be used to find the lowest common ancestor (LCA) of two nodes in a binary tree, which is given below.
 
 ```python
 def lca(node0: BinaryTreeNode,
@@ -85,8 +85,6 @@ def lca(node0: BinaryTreeNode,
         node0, node1 = node0.parent, node1.parent
     return node0
 ```
-
-#### Array-based
 
 ### Basic operations
 
