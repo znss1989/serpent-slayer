@@ -30,12 +30,20 @@ def leaves(t: TreeNode) -> List[TreeNode]:
   return leaves(t.left) + leaves(t.right)
 ```
 
-### Types
+### Special binary trees
+
+There are certain types of binary trees with special shapes, thus are of interest to be discussed.
 
 - Full binary tree
-- Compelete ...
-- Perfect ...
-- Balanced ...
+  A *full binary tree* is a binary tree in which every node other than the leaves has two children. 
+- Perfect binary tree
+  A *perfect binary tree* is a full binary tree in which all leaves are at the same depth, and in which every parent has two children.
+  A perfect binary tree of height `h` contains exactly $ 2^{h+1} - 1 $ nodes, of which $2^h$ are leaves. 
+- Complete binary tree  
+  A *complete binary tree* is a binary tree in which every level, except possibly the last, is completely filled, and all nodes are as far left as possible.
+  A complete binary tree on n nodes has height $logn$.
+- Skewed tree
+  A *left-skewed* tree is a tree in which no node has a right child; a *right-skewed* tree is a tree in which no node has a left child. In either case, we refer to the binary tree as being skewed.
 
 ### Traverse
 
@@ -78,4 +86,3 @@ def leaves(t: TreeNode) -> List[TreeNode]:
 ## Discuss
 
 General trees vs binary trees vs graphs
-
