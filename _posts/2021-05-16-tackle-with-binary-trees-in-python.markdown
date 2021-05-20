@@ -35,14 +35,21 @@ def leaves(t: BinaryTreeNode) -> List[BinaryTreeNode]:
 There are certain types of binary trees with special shapes, thus are of interest to be discussed.
 
 - Full binary tree
-  A *full binary tree* is a binary tree in which every node other than the leaves has two children. 
+
+  A *full binary tree* is a binary tree in which every node other than the leaves has two children.
+
 - Perfect binary tree
+
   A *perfect binary tree* is a full binary tree in which all leaves are at the same depth, and in which every parent has two children.
-  A perfect binary tree of height `h` contains exactly $$ 2^{h+1}-1 $$ nodes, of which $$ 2^h $$ are leaves. 
-- Complete binary tree  
+  A perfect binary tree of height `h` contains exactly $$ 2^{h+1}-1 $$ nodes, of which $$ 2^h $$ are leaves.
+
+- Complete binary tree
+
   A *complete binary tree* is a binary tree in which every level, except possibly the last, is completely filled, and all nodes are as far left as possible.
   A complete binary tree on n nodes has height $logn$.
+
 - Skewed tree
+
   A *left-skewed* tree is a tree in which no node has a right child; a *right-skewed* tree is a tree in which no node has a left child. In either case, we refer to the binary tree as being skewed.
 
 ## How does it work
@@ -89,6 +96,22 @@ def lca(node0: BinaryTreeNode,
 ### Basic operations
 
 #### Traverse
+
+A basic operation for a binary tree is to walk through all the nodes in the tree, which is formally called **traversing** the tree. There are several ways that traversing can be conducted.
+
+- Inorder traversal
+
+  Traverse the left subtree, visit the root, then traverse the right subtree.
+
+- Preorder traversal
+
+  Visit the root, traverse the left subtree, then traverse the right subtree.
+
+- Postorder traversal
+
+  Traverse the left subtree, traverse the right subtree, and then visit the root.
+
+
 
 - Preorder and postorder
   9.11, 9.12
