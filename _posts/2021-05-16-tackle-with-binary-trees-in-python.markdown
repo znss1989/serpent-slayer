@@ -103,6 +103,39 @@ A basic operation for a binary tree is to walk through all the nodes in the tree
 
   Traverse the left subtree, visit the root, then traverse the right subtree.
 
+```python
+def traverse(tree: BinaryTreeNode):
+    if not tree:
+        return
+    traverse(tree.left)
+    do_something(tree.data) # actual processing on a node
+    traverse(tree.right)
+```
+  
+Normally, inorder traversal can be easily realized recursively as above, with implicit space of $$ O(h) $$, where $$ h $$ is the height of the tree. Considering a binary tree where each node has a `parent` field, this space complexity can be further reduced to be constant, as the following.
+
+```python
+def inorder_traversal(tree: BinaryTreeNode) -> List[int]:
+    res = []
+    prev, curr = None, tree
+
+    while curr:
+        if curr.parent is prev: # moving down
+            if curr.left:
+                prev, curr = curr, curr.left
+            else:
+                res.append(curr.data)
+                prev, curr = curr, curr.right or curr.parent
+        else: # moving up
+            if curr.left is prev:
+                res.append(curr.data)
+                prev, curr = curr, curr.right or curr.parent
+            else:
+                prev, curr = curr, curr.parent
+
+    return res
+```
+
 - Preorder traversal
 
   Visit the root, traverse the left subtree, then traverse the right subtree.
@@ -115,8 +148,7 @@ A basic operation for a binary tree is to walk through all the nodes in the tree
 
 - Preorder and postorder
   9.11, 9.12
-- Inorder 
-  9.10
+
 - BFS
 - Euler tour
 
