@@ -46,7 +46,7 @@ There are certain types of binary trees with special shapes, thus are of interes
 - Complete binary tree
 
   A *complete binary tree* is a binary tree in which every level, except possibly the last, is completely filled, and all nodes are as far left as possible.
-  A complete binary tree on n nodes has height $logn$.
+  A complete binary tree on n nodes has height $$log n$$.
 
 - Skewed tree
 
@@ -230,7 +230,7 @@ def is_symmetric(tree: BinaryTreeNode) -> bool:
 
 ### Algorithms for balanced trees
 
-Many algorithms like search of a key that process on a binary tree have a time complexity of *O(h)*, where *h* is the tree height. This translates into *O(logn)* complexity for balanced trees, but *O(n)* complexity for skewed trees, where *n* is total number of nodes. To check whether a binary tree is balanced, the following algorithm can be used. Here, a binary tree is said to be height-balanced if for each node in the tree, the difference in the height of its left and right subtrees is at most one.
+Many algorithms like search of a key that process on a binary tree have a time complexity of *O(h)*, where *h* is the tree height. This translates into *O(log n)* complexity for balanced trees, but *O(n)* complexity for skewed trees, where *n* is total number of nodes. To check whether a binary tree is balanced, the following algorithm can be used. Here, a binary tree is said to be height-balanced if for each node in the tree, the difference in the height of its left and right subtrees is at most one.
 
 ```python
 def is_balanced_binary_tree(tree: BinaryTreeNode) -> bool:
@@ -255,13 +255,32 @@ def is_balanced_binary_tree(tree: BinaryTreeNode) -> bool:
 
 ## Applications of binary trees
 
+Binary trees form the building blocks for a variety of highly efficient algorithm implementations.
+
 ### Expression trees
 
-DSA.p312
+For instance, an arithmetic expression can be represented by a binary tree whose leaves are associated with variables or constants, and whose internal nodes are
+associated with one of the operators $$+$$, $$−$$, $$×$$, and $$/$$. (See Figure 8.8.) Each node in such a tree has a value associated with it.
+
+- If a node is leaf, then its value is that of its variable or constant.
+- If a node is internal, then its value is defined by applying its operation to the values of its children.
+
+![Expression tree](/serpent-slayer/assets/images/210516/expression-tree.png)
+
+This tree in the figure above represents the expression $$ ((((3 +1)×3)/((9 −5)+2))−((3×(7−4)) +6)) $$.
 
 ## Discuss
 
-General trees vs binary trees vs graphs
+### General tree
+
+A general tree is an abstract data type that stores elements hierarchically. With the exception of the top element, each element in a tree has a parent element and zero or more children elements.
+
+Formally, we define a tree *T* as a set of nodes storing elements such that the nodes have a parent-child relationship that satisfies the following properties:
+
+- If *T* is nonempty, it has a special node, called the root of *T*, that has no parent.
+- Each node *v* of *T* different from the root has a unique parent node *w*; every node with parent *w* is a child of *w*.
+
+### Euler tour
 
 In some cases when traversing a tree (not necessarily a binary tree), we need more of a blending of the approaches, with initial work performed before recurring on subtrees, additional work performed after those recursions, and in the case of a binary tree, work performed between the two possible recursions.
 
