@@ -108,7 +108,7 @@ def traverse(tree: BinaryTreeNode):
     if not tree:
         return
     traverse(tree.left)
-    do_something(tree.data) # actual processing on a node
+    yield tree.data # or actual processing on a node
     traverse(tree.right)
 ```
   
@@ -227,7 +227,6 @@ def is_symmetric(tree: BinaryTreeNode) -> bool:
 
     return mirror(tree.left, tree.right)
 ```
-
 
 ### Algorithms for balanced trees
 
