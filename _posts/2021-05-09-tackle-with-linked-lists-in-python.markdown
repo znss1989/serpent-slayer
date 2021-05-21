@@ -2,7 +2,7 @@
 layout: post
 title:  "Tackle with linked lists in Python"
 author: Wu, Lei
-date:   2020-05-09 09:15:00 +0300
+date:   2021-05-09 09:15:00 +0300
 categories: [computer science, data structure]
 tags: [linked lists, python]
 ---
@@ -38,9 +38,9 @@ Here below is probably the simplest prototype implementation of a singly linked 
 
 ```python
 class ListNode:
-  def __init__(self , data=0, next_node=None)
-    self.data = data
-    self.next = next_node
+    def __init__(self , data=0, next_node=None)
+        self.data = data
+        self.next = next_node
 ```
 
 Of course, here the `data` field can be customized at will for different applications.
@@ -365,5 +365,3 @@ If there are futher interesting topics I encounter related to linked lists, this
 ## References
 
 [Data structures and algorithms in Python](https://www.amazon.com/Structures-Algorithms-Python-Michael-Goodrich/dp/1118290275)
-
-
