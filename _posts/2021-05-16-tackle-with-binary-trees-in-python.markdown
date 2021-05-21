@@ -140,16 +140,71 @@ def inorder_traversal(tree: BinaryTreeNode) -> List[int]:
 
   Visit the root, traverse the left subtree, then traverse the right subtree.
 
+With both the sequences from an inorder and preorder traversal, it is possible to reconstruct a binary tree. Assuming the binary tree has a unique key for each of the node, the reconstruction can be implemented as the following.
+
+```python
+def binary_tree_from_preorder_inorder(preorder: List[int],
+                                      inorder: List[int]) -> BinaryTreeNode:
+    if not preorder:
+        return None
+    root = BinaryTreeNode(preorder[0])
+    i = inorder.index(root.data)
+
+    l_inorder, r_inorder = inorder[:i], inorder[i + 1:]
+    l_preorder, r_preorder = preorder[1:len(l_inorder) + 1], \
+        preorder[-len(r_inorder):] if r_inorder else []
+
+    root.left, root.right = binary_tree_from_preorder_inorder(l_preorder, l_inorder), \
+        binary_tree_from_preorder_inorder(r_preorder, r_inorder)
+    return root
+```
+
+Many different binary trees can have the same preorder traversal sequence. However, if an empty children is also marked in the preorder sequence, the reconstruction becomes doable, as the following.
+```python
+def reconstruct_preorder(preorder: List[int]) -> BinaryTreeNode:
+    if not preorder:
+        return None
+    
+    def build_tree(it: iter) -> BinaryTreeNode:
+        node_key = next(it)
+        if node_key is None:
+            return None
+
+        left = build_tree(it)
+        right = build_tree(it)
+        
+        return BinaryTreeNode(node_key, left, right)
+
+    return build_tree(iter(preorder))
+```
+
+It is observed that in a sequence from preorder traversal, all nodes of the right subtree comes after the left one. Thus it is natural to build the left subtree, before building the right counterpart, where the edge case of the empty children hints the end of each building process. Note that the tricky part here is to use the iterator or a variable external to the recursive utility function of `build_tree` to keep record of position to be visited.
+
 - Postorder traversal
 
   Traverse the left subtree, traverse the right subtree, and then visit the root.
 
-
-
-- Preorder and postorder
-  9.11, 9.12
-
 - BFS
+
+  Another common approach is to traverse a tree so that we visit all the positions at depth *d* before we visit the positions at depth *d + 1*. Such an algorithm is known as a **Breadth-First Search** (BFS) or traversal.
+
+```python
+from collections import deque
+
+def BFS(tree: BinaryTreeNode) -> List[int]:
+    res = []
+    q = deque([tree])
+
+    while q:
+        curr = q.popleft()
+        res.append(curr.data)
+        if curr.left:
+            q.append(curr.left)
+        if curr.right:
+            q.append(curr.right)
+    return res
+```
+
 - Euler tour
 
 ## Manipulation and common techniques
