@@ -205,8 +205,6 @@ def BFS(tree: BinaryTreeNode) -> List[int]:
     return res
 ```
 
-- Euler tour
-
 ## Manipulation and common techniques
 
 ### Recursion
@@ -223,3 +221,28 @@ def BFS(tree: BinaryTreeNode) -> List[int]:
 ## Discuss
 
 General trees vs binary trees vs graphs
+
+In some cases when traversing a tree (not necessarily a binary tree), we need more of a blending of the approaches, with initial work performed before recurring on subtrees, additional work performed after those recursions, and in the case of a binary tree, work performed between the two possible recursions.
+
+![Euler tour traversal of a general tree](/serpent-slayer/assets/images/210516/euler-tour.png)
+
+The **Euler tour** traversal of a general tree *T* can be informally defined as a “walk” around *T*, where we start by going from the root toward its leftmost child, viewing the edges of T as being “walls” that we always keep to our left, as shown in the figure above (from [Data structures and algorithms in Python](https://www.amazon.com/Structures-Algorithms-Python-Michael-Goodrich/dp/1118290275)).
+
+- A “pre visit” occurs when first reaching the position, that is, when the walk
+passes immediately left of the node in our visualization.
+- A “post visit” occurs when the walk later proceeds upward from that position,
+that is, when the walk passes to the right of the node in our visualization.
+
+The algorithm for such Euler tour is given in pseudo code as below.
+
+```bash
+Algorithm eulertour(T, p):
+    perform the “pre visit” action for position p
+    for each child c in T.children(p) do
+        eulertour(T, c)     {recursively tour the subtree rooted at c}
+    perform the “post visit” action for position p
+```
+
+## References
+
+[Data structures and algorithms in Python](https://www.amazon.com/Structures-Algorithms-Python-Michael-Goodrich/dp/1118290275)
