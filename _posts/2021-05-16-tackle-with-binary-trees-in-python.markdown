@@ -209,14 +209,56 @@ def BFS(tree: BinaryTreeNode) -> List[int]:
 
 ### Recursion
 
-9.1, 9.2
+Algorithms involving a binary tree often make use of the recursive nature of the data structure. For example, to check whether a binary tree is symmetric or not, it can be solved by recursively checking whether its left and right subtree mirrors each other.
+
+```python
+def is_symmetric(tree: BinaryTreeNode) -> bool:
+    if not tree:
+        return True
+
+    def mirror(n1: BinaryTreeNode, n2: BinaryTreeNode) -> bool:
+        if not n1 and not n2:
+            return True
+        if not n1 or not n2:
+            return False
+        if n1.data != n2.data:
+            return False
+        return mirror(n1.left, n2.right) and mirror(n1.right, n2.left)
+
+    return mirror(tree.left, tree.right)
+```
 
 
 ### Algorithms for balanced trees
 
+Many algorithms like search of a key that process on a binary tree have a time complexity of *O(h)*, where *h* is the tree height. This translates into *O(logn)* complexity for balanced trees, but *O(n)* complexity for skewed trees, where *n* is total number of nodes. To check whether a binary tree is balanced, the following algorithm can be used. Here, a binary tree is said to be height-balanced if for each node in the tree, the difference in the height of its left and right subtrees is at most one.
+
+```python
+def is_balanced_binary_tree(tree: BinaryTreeNode) -> bool:
+    def check_balance(node: BinaryTreeNode) -> (bool, int):
+        if not node:
+            return True, -1
+        
+        left_balance, left_height = check_balance(node.left)
+        if not left_balance:
+            return False, 0
+
+        right_balance, right_height = check_balance(node.right)
+        if not right_balance:
+            return False, 0
+
+        return abs(left_height - right_height) <= 1, \
+            max(left_height, right_height) + 1
+    
+    res, _ = check_balance(tree)
+    return res
+```
+
 ## Applications of binary trees
 
 ### Expression trees
+
+DSA.p312
 
 ## Discuss
 
