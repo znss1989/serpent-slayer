@@ -46,7 +46,7 @@ There are certain types of binary trees with special shapes, thus are of interes
 - Complete binary tree
 
   A *complete binary tree* is a binary tree in which every level, except possibly the last, is completely filled, and all nodes are as far left as possible.
-  A complete binary tree on n nodes has height $$log n$$.
+  A complete binary tree on n nodes has height $$\lfloor log n \rfloor$$.
 
 - Skewed tree
 
@@ -159,7 +159,7 @@ def binary_tree_from_preorder_inorder(preorder: List[int],
     return root
 ```
 
-Many different binary trees can have the same preorder traversal sequence. However, if an empty children is also marked in the preorder sequence, the reconstruction becomes doable, as the following.
+Many different binary trees can have the same preorder traversal sequence. However, if an empty children is also marked in the preorder sequence (e.g. $$ [1, 2, null, null, 3, null, null] $$), the reconstruction becomes doable, as the following.
 ```python
 def reconstruct_preorder(preorder: List[int]) -> BinaryTreeNode:
     if not preorder:
