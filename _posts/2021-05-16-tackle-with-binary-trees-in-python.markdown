@@ -190,7 +190,6 @@ from collections import namedtuple
 
 def lca(tree: BinaryTreeNode, node0: BinaryTreeNode,
         node1: BinaryTreeNode) -> Optional[BinaryTreeNode]:
-    # TODO - you fill in here.
     Status = namedtuple('Status', ['include', 'ancestor'])
 
     def _check(tree: BinaryTreeNode, n0: BinaryTreeNode, n1: BinaryTreeNode) -> Status:
