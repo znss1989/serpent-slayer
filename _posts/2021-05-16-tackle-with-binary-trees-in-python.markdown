@@ -182,7 +182,35 @@ It is observed that in a sequence from preorder traversal, all nodes of the righ
 
 - Postorder traversal
 
-  Traverse the left subtree, traverse the right subtree, and then visit the root.
+  Traverse the left subtree, traverse the right subtree, and then visit the root. Pre-processing the subtrees first can be useful before deciding a result at the root of a tree. For instance when a tree node does not have a `parent` field, the following algorithm utilized a postorder approach to find out the lowest common ancestor of two nodes in a tree.
+
+```python
+from collections import namedtuple
+
+
+def lca(tree: BinaryTreeNode, node0: BinaryTreeNode,
+        node1: BinaryTreeNode) -> Optional[BinaryTreeNode]:
+    # TODO - you fill in here.
+    Status = namedtuple('Status', ['include', 'ancestor'])
+
+    def _check(tree: BinaryTreeNode, n0: BinaryTreeNode, n1: BinaryTreeNode) -> Status:
+        """work similarly as postorder traversal"""
+        if not tree:
+            return Status(0, None)
+
+        left = _check(tree.left, n0, n1)
+        if left.include == 2:
+            return left
+        right = _check(tree.right, n0, n1)
+        if right.include == 2:
+            return right
+        
+        include = left.include + right.include + int(tree is n0) + int(tree is n1)
+        ancestor = tree if include == 2 else None
+        return Status(include, ancestor)
+
+    return _check(tree, node0, node1).ancestor
+```
 
 - BFS
 
