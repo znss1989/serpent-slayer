@@ -136,6 +136,23 @@ def inorder_traversal(tree: BinaryTreeNode) -> List[int]:
     return res
 ```
 
+Without the `parent` field, the inorder traversal of a tree can be done iteratively as well, utilizing a stack.
+
+```python
+def inorder_traversal(tree: BinaryTreeNode) -> List[int]:
+    res, stack = [], []
+
+    while tree or stack:
+        if tree: # push to stack, go left
+            stack.append(tree)
+            tree = tree.left
+        else: # pop from stack, process and go right
+            tree = stack.pop()
+            res.append(tree.data)
+            tree = tree.right
+    return res
+```
+
 - Preorder traversal
 
   Visit the root, traverse the left subtree, then traverse the right subtree.
